@@ -1,0 +1,13 @@
+diff --git a/node_modules/@types/bandagedbd__bdapi/index.d.ts b/node_modules/@types/bandagedbd__bdapi/index.d.ts
+index 4f7c61a..c6181a7 100644
+--- a/node_modules/@types/bandagedbd__bdapi/index.d.ts
++++ b/node_modules/@types/bandagedbd__bdapi/index.d.ts
+@@ -159,7 +159,7 @@ export namespace BdApiModule {
+     /**
+      * An instance of AddonAPI to access plugins.
+      */
+-    const Plugins: typeof AddonAPI;
++    const Plugins: AddonAPI;
+ 
+     /**
+      * Gives access to BBD's internal settings object and is therefore subject to change.

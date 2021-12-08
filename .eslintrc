@@ -1,0 +1,17 @@
+{
+  "extends": ["plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-var-requires": "off"
+  },
+  "overrides": [
+    {
+      "files": ["./types/**/*.d.ts"],
+      "rules": {
+        "@typescript-eslint/ban-types": { "extendDefaults": true, "types": { "Function": false } }
+      }
+    }
+  ]
+}

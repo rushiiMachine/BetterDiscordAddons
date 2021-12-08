@@ -1,0 +1,256 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "required": ["info"],
+  "additionalProperties": true,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Config schema url. This is omitted when building the plugin."
+    },
+    "info": {
+      "type": "object",
+      "description": "Info about the plugin. Used to generate the header.",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "mainAuthor": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "This acts as an ID to get from `authors`, meaning that `authors` is a dependency."
+            },
+            "link": { "type": "string" }
+          }
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "discord_id": {
+                    "type": "string",
+                    "pattern": "^\\d{17,19}$"
+                  },
+                  "github_username": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z\\d](?:[a-zA-Z\\d]|-(?=[a-zA-Z\\d])){0,38}$"
+                  },
+                  "twitter_username": {
+                    "type": "string",
+                    "pattern": "^@?(\\w){1,15}$"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "website": { "type": "string" },
+        "source": { "type": "string" },
+        "invite": { "type": "string" },
+        "donate": { "type": "string" },
+        "patreon": { "type": "string" }
+      }
+    },
+    "changelog": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "items"],
+            "properties": {
+              "title": { "type": "string" },
+              "type": { "enum": ["fixed", "improved", "progress"] },
+              "items": {
+                "type": "array",
+                "items": { "anyOf": [{ "type": "string" }] }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "defaultConfig": {
+      "$id": "#/properties/defaultConfig",
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "collapsible", "shown", "settings"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "category" },
+              "collapsible": { "type": "boolean" },
+              "shown": { "type": "boolean" },
+              "settings": { "anyOf": [{ "$ref": "#/properties/defaultConfig" }] }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "value"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "color" },
+              "value": { "type": "string", "pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$" }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "value"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "file" },
+              "value": { "type": "string" }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "value"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "switch" },
+              "value": { "type": "boolean" }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "value"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "textbox" },
+              "value": { "$ref": "#/definitions/jsonValue" },
+              "placeholder": { "$ref": "#/definitions/jsonValue" }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "value"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "keybind" },
+              "value": {
+                "type": "array",
+                "items": { "anyOf": [{ "type": "integer" }] }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "value", "min", "max"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "slider" },
+              "value": { "type": "integer" },
+              "min": { "type": "integer" },
+              "max": { "type": "integer" },
+              "markers": {
+                "type": "array",
+                "items": { "anyOf": [{ "type": "integer" }] }
+              },
+              "stickToMarkers": { "type": "boolean" }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "value"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "radio" },
+              "value": { "$ref": "#/definitions/jsonValue" },
+              "options": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["name", "value", "desc", "color"],
+                      "properties": {
+                        "name": { "type": "string" },
+                        "value": { "$ref": "#/definitions/jsonValue" },
+                        "desc": { "type": "string" },
+                        "color": { "type": "string", "pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["id", "name", "type", "value"],
+            "allOf": [{ "$ref": "#/definitions/basePluginSetting" }],
+            "properties": {
+              "type": { "const": "dropdown" },
+              "value": { "$ref": "#/definitions/jsonValue" },
+              "options": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "required": ["label", "value"],
+                      "additionalProperties": false,
+                      "properties": {
+                        "label": { "type": "string" },
+                        "value": { "$ref": "#/definitions/jsonValue" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "build": {
+      "type": "object",
+      "description": "Build-time settings. This is omitted when building the plugin.",
+      "additionalProperties": false,
+      "properties": {
+        "includeInstallScript": {
+          "type": "boolean",
+          "description": "Include install script for when the plugin is run directly."
+        },
+        "licenses": {
+          "type": "array",
+          "description": "Licenses to be added as comments/headers.",
+          "items": {
+            "anyOf": [{ "type": "string" }]
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "basePluginSetting": {
+      "$id": "#/definitions/basePluginSetting",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "jsonValue": {
+      "$id": "#/definitions/jsonValue",
+      "type": ["string", "integer", "boolean"]
+    }
+  }
+}

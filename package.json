@@ -1,0 +1,32 @@
+{
+  "private": "true",
+  "scripts": {
+    "postinstall": "patch-package",
+    "build": "bash -c \"npx webpack --config plugins/${0}/webpack.config.js && find dist -name '*.LICENSE.txt' -delete && node ./scripts/FinalizeBuild.js ${0}\"",
+    "dev": "bash -c \"yarn build ${0} && node ./scripts/CopyToBD.js ${0}\""
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "eslint": "^7.32.0",
+    "patch-package": "^6.4.7",
+    "schema-utils": "^3.1.1",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "webpack": "^5.48.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "@types/bandagedbd__bdapi": "^0.3.1",
+    "@types/electron": "^1.6.10",
+    "@types/jquery": "^3.5.6",
+    "@types/kuromoji": "^0.1.1",
+    "@types/node": "^16.4.12",
+    "@types/react": "^17.0.15",
+    "@types/request": "^2.48.7",
+    "@types/wanakana": "^4.0.3",
+    "kuromoji": "^0.1.2",
+    "wanakana": "^4.0.2",
+    "webpack-config": "^7.5.0"
+  }
+}

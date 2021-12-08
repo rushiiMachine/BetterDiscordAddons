@@ -1,0 +1,42 @@
+{
+  "$schema": "../../scripts/config.schema.json",
+  "info": {
+    "name": "Furigana",
+    "description": "Auto insert furigana on Japanese kanji in messages.",
+    "version": "1.0.0",
+    "mainAuthor": {
+      "name": "Diamond"
+    },
+    "authors": [{ "name": "Diamond", "github_username": "DiamondMiner88" }],
+    "invite": "kkcqFZrT52",
+    "website": "https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/plugins/Furigana",
+    "source": "https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/dist/Furigana/Furigana.plugin.js"
+  },
+  "defaultConfig": [
+    {
+      "id": "useKatakana",
+      "name": "Use katakana",
+      "note": "Use katakana instead of hiragana.",
+      "type": "switch",
+      "value": false
+    },
+    {
+      "id": "furiganaSize",
+      "type": "slider",
+      "name": "Furigana size",
+      "value": 60,
+      "min": 0,
+      "max": 100
+    }
+  ],
+  "build": {
+    "includeInstallScript": true,
+    "licenses": [
+      "async 2010-2018 - Caolan McMahon [ https://github.com/caolan/async ] The MIT License",
+      "doublearray 2014 - Takuya Asano [ https://github.com/takuyaa/doublearray ] The MIT License",
+      "kuromoji - Takuya Asano [ https://github.com/takuyaa/kuromoji.js ] Apache License 2.0",
+      "wanakana 2013 - WaniKani Community Github [ https://github.com/WaniKani/WanaKana ] The MIT License",
+      "zlib.js 2012 - imaya [ https://github.com/imaya/zlib.js ] The MIT License"
+    ]
+  }
+}

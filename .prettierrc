@@ -1,0 +1,15 @@
+{
+  "arrowParens": "avoid",
+  "singleQuote": true,
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "printWidth": 100,
+  "overrides": [
+    {
+      "files": "{plugins,common}/**/*.{js,ts,tsx,jsx}",
+      "options": {
+        "printWidth": 250
+      }
+    }
+  ]
+}
