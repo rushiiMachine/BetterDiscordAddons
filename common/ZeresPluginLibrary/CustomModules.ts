@@ -2,11 +2,11 @@ import { ZeresPluginLibrary } from './types';
 
 export default function ({ WebpackModules }: ZeresPluginLibrary) {
   return {
-    get LastChannelStore() {
+    get LastSelectedChannelStore() {
       return WebpackModules.getByProps('getLastSelectedChannelId');
     },
 
-    // idk if this is the actual name
+    // verify name
     get AstParser() {
       return WebpackModules.getByProps('parse', 'parseTopic');
     },
@@ -17,6 +17,14 @@ export default function ({ WebpackModules }: ZeresPluginLibrary) {
 
     get ReactionUtils() {
       return WebpackModules.getByProps('addReaction', 'removeReaction');
+    },
+
+    get PermissionUtils() {
+      return WebpackModules.getByProps('getChannelPermissions', 'can');
+    },
+
+    get Permissions() {
+      return WebpackModules.getByProps('Permissions', 'BLOG_DOMAIN', 'APP_URL_PREFIX').Permissions;
     }
   };
 }

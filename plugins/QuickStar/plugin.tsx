@@ -13,8 +13,8 @@ const QuickStar = libCheck(config, (Plugin, Library) => {
   const { Patcher, DiscordModules, WebpackModules } = Library;
 
   /* Discord webpack modules */
-  const { MessageContextMenu, ReactionUtils } = CustomModules(Library);
   const { React } = DiscordModules;
+  const { MessageContextMenu, ReactionUtils, PermissionUtils, Permissions } = CustomModules(Library);
   const Menu = WebpackModules.getByProps('MenuItem');
 
   /* Plugin class */
@@ -32,12 +32,15 @@ const QuickStar = libCheck(config, (Plugin, Library) => {
         Patcher.after(MessageContextMenu, 'default', (_, args, returnVal) => {
           console.log(args);
           const { id: message_id, channel_id } = args[0].message;
+          const { channel } = args[0];
+          if (!PermissionUtils.can(Permissions.ADD_REACTIONS, channel)) return;
+
           const tree = returnVal.props.children[2].props.children;
           tree.splice(
-            1,
+            9,
             0,
             <Menu.MenuItem
-              id="gloabl-reply"
+              id="quick-star"
               label="Quick Star"
               action={() => {
                 ReactionUtils.addReaction(channel_id, message_id, { id: null, name: '⭐', animated: false });
