@@ -13,7 +13,7 @@
 const { validate } = require('schema-utils');
 
 module.exports = function (source) {
-  const schemaPath = __dirname + '/ConfigSchema.json';
+  const schemaPath = __dirname + '/config.schema.json';
   this.addDependency(schemaPath);
 
   if (this.cacheable) this.cacheable();
