@@ -10,7 +10,7 @@
     "authors": [{ "name": "Diamond", "github_username": "DiamondMiner88" }],
     "invite": "kkcqFZrT52",
     "website": "https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/plugins/Furigana",
-    "source": "https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/dist/Furigana/Furigana.plugin.js"
+    "source": "https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/dist/Furigana.plugin.js"
   },
   "defaultConfig": [
     {
