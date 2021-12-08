@@ -58,6 +58,7 @@
         },
         "website": { "type": "string" },
         "source": { "type": "string" },
+        "updateUrl": { "type": "string" },
         "invite": { "type": "string" },
         "donate": { "type": "string" },
         "patreon": { "type": "string" }

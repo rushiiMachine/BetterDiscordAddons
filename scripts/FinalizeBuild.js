@@ -39,6 +39,8 @@ if (config.info.website) buffer += `\n * @website ${config.info.website}`;
 
 if (config.info.source) buffer += `\n * @source ${config.info.source}`;
 
+if (config.info.updateUrl) buffer += `\n * @updateUrl ${config.info.updateUrl}`
+
 if (config.info.invite) buffer += `\n * @invite ${config.info.invite}`;
 
 if (config.info.donate) buffer += `\n * @donate ${config.info.donate}`;
