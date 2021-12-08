@@ -30,9 +30,8 @@ const QuickStar = libCheck(config, (Plugin, Library) => {
     onStart() {
       this.patches.push(
         Patcher.after(MessageContextMenu, 'default', (_, args, returnVal) => {
-          console.log(args);
-          const { id: message_id, channel_id } = args[0].message;
-          const { channel } = args[0];
+          const { channel, message } = args[0];
+          const { id: message_id, channel_id } = message;
           if (!PermissionUtils.can(Permissions.ADD_REACTIONS, channel)) return;
 
           const tree = returnVal.props.children[2].props.children;
