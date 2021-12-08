@@ -1,0 +1,19 @@
+{
+  "$schema": "../../scripts/config.schema.json",
+  "info": {
+    "name": "QuickStar",
+    "description": "Add a star reaction option to message options.",
+    "version": "1.0.0",
+    "mainAuthor": {
+      "name": "Diamond"
+    },
+    "authors": [{ "name": "Diamond", "github_username": "DiamondMiner88" }],
+    "invite": "kkcqFZrT52",
+    "website": "https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/plugins/QuickStar",
+    "source": "https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/dist/QuickStar.plugin.js",
+    "updateUrl": "https://raw.githubusercontent.com/DiamondMiner88/BetterDiscordAddons/master/dist/QuickStar.plugin.js"
+  },
+  "build": {
+    "includeInstallScript": true
+  }
+}

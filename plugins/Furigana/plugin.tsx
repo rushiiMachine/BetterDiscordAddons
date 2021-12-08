@@ -31,7 +31,6 @@ const Furigana = libCheck(config, (Plugin, Library) => {
 
     constructor() {
       super();
-
       this.patches = [];
     }
 

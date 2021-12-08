@@ -11,20 +11,12 @@ export default function ({ WebpackModules }: ZeresPluginLibrary) {
       return WebpackModules.getByProps('parse', 'parseTopic');
     },
 
-    // get UserPopouts(): {
-    //   UserPopoutInfo: any;
-    //   UserPopoutCustomStatus: any;
-    //   UserPopoutAvatar: any;
-    //   UserPopoutProfileText: any;
-    // } {
-    //   return WebpackModules.getByProps('UserPopoutInfo');
-    // },
+    get MessageContextMenu() {
+      return WebpackModules.find(m => m?.default?.displayName === 'MessageContextMenu');
+    },
 
-    // get UserPopoutBody(): { default: any } {
-    //   return WebpackModules.getModule(m => m.default.displayName === 'UserPopoutBody');
-    // },
-
-    // WebpackModules.getModule(m => m.default.displayName === 'CustomStatus')
-    // WebpackModules.getModule(m => m.default.displayName === 'UserBio')
+    get ReactionUtils() {
+      return WebpackModules.getByProps('addReaction', 'removeReaction');
+    }
   };
 }
