@@ -1,14 +1,14 @@
 // TODO: export properly without globals
 
 /* Imports */
-import CustomModules from '../../common/ZeresPluginLibrary/CustomModules';
-import libCheck from '../../common/ZeresPluginLibrary/0PluginLibCheck';
+import CustomModules from '../../common/CustomModules';
+import { buildPlugin } from '../../common/BuildPlugin';
 import config from './config.json';
 
 /* Typings imports */
-import { UnpatchCallback } from '../../common/ZeresPluginLibrary/types/Patcher';
+import { UnpatchCallback } from '../../common/ZLibrary/Patcher';
 
-const QuickStar = libCheck(config, (Plugin, Library) => {
+const QuickStar = buildPlugin(config, (Plugin, Library) => {
   /* Libraries */
   const { Patcher, DiscordModules, WebpackModules } = Library;
 

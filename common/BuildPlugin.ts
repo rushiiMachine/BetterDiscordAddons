@@ -5,9 +5,9 @@ import * as path from 'path';
 import * as electron from 'electron';
 
 /* Typings imports */
-import { ZeresPluginLibrary, PluginConfig, BasePlugin } from './types';
+import { ZeresPluginLibrary, PluginConfig, BasePlugin } from './ZLibrary';
 
-export default function (config_: unknown, buildPlugin: (basePlugin: BasePlugin, library: ZeresPluginLibrary) => BasePlugin): unknown {
+export function buildPlugin(config_: unknown, buildPlugin: (basePlugin: BasePlugin, library: ZeresPluginLibrary) => BasePlugin): unknown {
   const config = config_ as PluginConfig;
   return !global.ZeresPluginLibrary
     ? class {

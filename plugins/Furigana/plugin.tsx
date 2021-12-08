@@ -3,15 +3,15 @@
 /* Imports */
 import * as kuromojiLib from 'kuromoji';
 import * as wanakana from 'wanakana';
-import CustomModules from '../../common/ZeresPluginLibrary/CustomModules';
-import libCheck from '../../common/ZeresPluginLibrary/0PluginLibCheck';
-import Utilities from '../../common/ZeresPluginLibrary/Utilities';
+import CustomModules from '../../common/CustomModules';
+import { buildPlugin } from '../../common/BuildPlugin';
+import Utilities from '../../common/Utilities';
 import config from './config.json';
 
 /* Typings imports */
-import { UnpatchCallback } from '../../common/ZeresPluginLibrary/types/Patcher';
+import { UnpatchCallback } from '../../common/ZLibrary/Patcher';
 
-const Furigana = libCheck(config, (Plugin, Library) => {
+const Furigana = buildPlugin(config, (Plugin, Library) => {
   /* Libraries */
   const { Patcher, Logger, PluginUtilities, Toasts, DiscordModules } = Library;
   const { updateMessages } = Utilities(Library);
@@ -37,7 +37,7 @@ const Furigana = libCheck(config, (Plugin, Library) => {
     /* Mandatory methods */
     onStart() {
       // If Discord is taking more than 1.7gb, then reload Discord
-      // This is required due to a memory leak in kuromoji 
+      // This is required due to a memory leak in kuromoji
       if (process.memoryUsage().rss > 1.7e9) return window.location.reload();
 
       this.reinjectCSS();

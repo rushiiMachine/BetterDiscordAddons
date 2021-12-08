@@ -1,4 +1,4 @@
-import { ZeresPluginLibrary } from './types';
+import { ZeresPluginLibrary } from './ZLibrary';
 
 export default function ({ WebpackModules }: ZeresPluginLibrary) {
   return {
