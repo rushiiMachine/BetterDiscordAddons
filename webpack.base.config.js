@@ -25,5 +25,8 @@ module.exports = new Config().merge({
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+  },
+  optimization: {
+    minimize: false
   }
 });
