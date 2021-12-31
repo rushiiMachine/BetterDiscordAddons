@@ -36,7 +36,7 @@ const QuickStar = buildPlugin(config, (Plugin, Library) => {
 
           const tree = returnVal.props.children[2].props.children;
           tree.splice(
-            9,
+            1,
             0,
             <Menu.MenuItem
               id="quick-star"

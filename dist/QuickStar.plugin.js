@@ -131,7 +131,7 @@ const QuickStar = buildPlugin(config_namespaceObject, (Plugin, Library) => {
                 if (!PermissionUtils.can(Permissions.ADD_REACTIONS, channel))
                     return;
                 const tree = returnVal.props.children[2].props.children;
-                tree.splice(9, 0, React.createElement(Menu.MenuItem, { id: "quick-star", label: "Quick Star", action: () => {
+                tree.splice(1, 0, React.createElement(Menu.MenuItem, { id: "quick-star", label: "Quick Star", action: () => {
                         ReactionUtils.addReaction(channel_id, message_id, { id: null, name: '⭐', animated: false });
                     } }));
             }));
