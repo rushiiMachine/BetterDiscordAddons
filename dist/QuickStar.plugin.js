@@ -30,7 +30,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 514:
+/***/ 846:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 
@@ -170,7 +170,7 @@ Object.assign(__webpack_require__.g, { QuickStar });
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__[514](0, __webpack_exports__, __webpack_require__);
+/******/ 	__webpack_modules__[846](0, __webpack_exports__, __webpack_require__);
 /******/ 	
 /******/ })()
 ;

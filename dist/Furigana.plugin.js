@@ -7863,7 +7863,7 @@ module.exports = BrowserDictionaryLoader;
 
 
 
-var path = __webpack_require__(262);
+var path = __webpack_require__(488);
 var async = __webpack_require__(195);
 var DynamicDictionaries = __webpack_require__(907);
 
@@ -8800,7 +8800,7 @@ module.exports = ViterbiSearcher;
 
 /***/ }),
 
-/***/ 257:
+/***/ 932:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8839,7 +8839,7 @@ const external_window_require_request_namespaceObject = window.require("request"
 ;// CONCATENATED MODULE: external "window.require(\"fs\")"
 const external_window_require_fs_namespaceObject = window.require("fs");
 // EXTERNAL MODULE: external "window.require(\"path\")"
-var external_window_require_path_ = __webpack_require__(262);
+var external_window_require_path_ = __webpack_require__(488);
 ;// CONCATENATED MODULE: external "window.require(\"electron\")"
 const external_window_require_electron_namespaceObject = window.require("electron");
 ;// CONCATENATED MODULE: ./common/BuildPlugin.ts
@@ -9068,7 +9068,7 @@ d=(g[h++]|g[h++]<<8|g[h++]<<16|g[h++]<<24)>>>0;(a.length&4294967295)!==d&&n(Erro
 
 /***/ }),
 
-/***/ 262:
+/***/ 488:
 /***/ ((module) => {
 
 "use strict";
@@ -9132,7 +9132,7 @@ module.exports = window.require("path");
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(257);
+/******/ 	var __webpack_exports__ = __webpack_require__(932);
 /******/ 	
 /******/ })()
 ;
