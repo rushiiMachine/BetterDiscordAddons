@@ -1,5 +1,5 @@
 /**
- * Based on BDPluginLibrary v1.2.26, commit 105f02353cbe2b0f6641aac2fa45486f3e09e849
+ * Based on BDPluginLibrary v1.2.26, commit 65ff498b055cfafe38a0debff9729f38d59405cf
  */
 
 /* Typing imports */
@@ -17,6 +17,7 @@ export interface ZeresPluginLibrary {
   DiscordContextMenu: _.DiscordContextMenu;
   DiscordModules: _.DiscordModules;
   DiscordSelectors: _.DiscordSelectors;
+  DCM: _.DCM;
   DOMTools: typeof DOMTools;
   Logger: typeof import('./Logger').Logger;
   Modals: typeof import('./Modals').Modals;
@@ -49,7 +50,6 @@ declare global {
   var BDFDB: any; // eslint-disable-line no-var
   var ZeresPluginLibrary: ZeresPluginLibrary; // eslint-disable-line no-var
   var ZLibrary: ZeresPluginLibrary; // eslint-disable-line no-var
-  var BdApi: typeof BdApiModule; // eslint-disable-line no-var
 }
 
 // DO NOT USE DIRECTLY
@@ -74,6 +74,8 @@ declare namespace _ {
 
   /* ZeresPluginLibrary.DiscordSelectors */
   type DiscordSelectors = any;
+
+  type DCM = any;
 
   class Listenable {
     addListener(callback: Function): Function;

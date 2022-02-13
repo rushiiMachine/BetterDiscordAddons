@@ -14,7 +14,7 @@ const QuickStar = buildPlugin(config, (Plugin, Library) => {
 
   /* Discord webpack modules */
   const { React } = DiscordModules;
-  const { MessageContextMenu, ReactionUtils, PermissionUtils, Permissions } = CustomModules(Library);
+  const { ReactionUtils, PermissionUtils, Permissions } = CustomModules(Library);
   const Menu = WebpackModules.getByProps('MenuItem');
 
   /* Plugin class */
@@ -27,7 +27,9 @@ const QuickStar = buildPlugin(config, (Plugin, Library) => {
     }
 
     /* Mandatory methods */
-    onStart() {
+    async onStart() {
+      const MessageContextMenu = await Library.DCM.getDiscordMenu('MessageContextMenu');
+
       this.patches.push(
         Patcher.after(MessageContextMenu, 'default', (_, args, returnVal) => {
           const { channel, message } = args[0];
@@ -36,7 +38,7 @@ const QuickStar = buildPlugin(config, (Plugin, Library) => {
 
           const tree = returnVal.props.children[2].props.children;
           tree.splice(
-            1,
+            7,
             0,
             <Menu.MenuItem
               id="quick-star"

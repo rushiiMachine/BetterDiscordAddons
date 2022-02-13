@@ -11,10 +11,6 @@ export default function ({ WebpackModules }: ZeresPluginLibrary) {
       return WebpackModules.getByProps('parse', 'parseTopic');
     },
 
-    get MessageContextMenu() {
-      return WebpackModules.find(m => m?.default?.displayName === 'MessageContextMenu');
-    },
-
     get ReactionUtils() {
       return WebpackModules.getByProps('addReaction', 'removeReaction');
     },

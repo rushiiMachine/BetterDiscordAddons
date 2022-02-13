@@ -1,7 +1,7 @@
 /**
  * @name QuickStar
  * @description Add a star reaction option to message options.
- * @version 1.0.0
+ * @version 1.0.1
  * @author Diamond
  * @website https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/plugins/QuickStar
  * @source https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/dist/QuickStar.plugin.js
@@ -43,9 +43,6 @@
         // verify name
         get AstParser() {
             return WebpackModules.getByProps('parse', 'parseTopic');
-        },
-        get MessageContextMenu() {
-            return WebpackModules.find(m => m?.default?.displayName === 'MessageContextMenu');
         },
         get ReactionUtils() {
             return WebpackModules.getByProps('addReaction', 'removeReaction');
@@ -103,7 +100,7 @@ function buildPlugin(config_, buildPlugin) {
 }
 
 ;// CONCATENATED MODULE: ./plugins/QuickStar/config.json
-const config_namespaceObject = JSON.parse('{"info":{"name":"QuickStar","description":"Add a star reaction option to message options.","version":"1.0.0","mainAuthor":{"name":"Diamond"},"authors":[{"name":"Diamond","github_username":"DiamondMiner88"}],"invite":"kkcqFZrT52","website":"https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/plugins/QuickStar","source":"https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/dist/QuickStar.plugin.js","updateUrl":"https://raw.githubusercontent.com/DiamondMiner88/BetterDiscordAddons/master/dist/QuickStar.plugin.js"}}');
+const config_namespaceObject = JSON.parse('{"info":{"name":"QuickStar","description":"Add a star reaction option to message options.","version":"1.0.1","mainAuthor":{"name":"Diamond"},"authors":[{"name":"Diamond","github_username":"DiamondMiner88"}],"invite":"kkcqFZrT52","website":"https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/plugins/QuickStar","source":"https://github.com/DiamondMiner88/BetterDiscordAddons/blob/master/dist/QuickStar.plugin.js","updateUrl":"https://raw.githubusercontent.com/DiamondMiner88/BetterDiscordAddons/master/dist/QuickStar.plugin.js"}}');
 ;// CONCATENATED MODULE: ./plugins/QuickStar/plugin.tsx
 // TODO: export properly without globals
 /* Imports */
@@ -115,7 +112,7 @@ const QuickStar = buildPlugin(config_namespaceObject, (Plugin, Library) => {
     const { Patcher, DiscordModules, WebpackModules } = Library;
     /* Discord webpack modules */
     const { React } = DiscordModules;
-    const { MessageContextMenu, ReactionUtils, PermissionUtils, Permissions } = CustomModules(Library);
+    const { ReactionUtils, PermissionUtils, Permissions } = CustomModules(Library);
     const Menu = WebpackModules.getByProps('MenuItem');
     /* Plugin class */
     return class QuickStar extends Plugin {
@@ -124,14 +121,15 @@ const QuickStar = buildPlugin(config_namespaceObject, (Plugin, Library) => {
             this.patches = [];
         }
         /* Mandatory methods */
-        onStart() {
+        async onStart() {
+            const MessageContextMenu = await Library.DCM.getDiscordMenu('MessageContextMenu');
             this.patches.push(Patcher.after(MessageContextMenu, 'default', (_, args, returnVal) => {
                 const { channel, message } = args[0];
                 const { id: message_id, channel_id } = message;
                 if (!PermissionUtils.can(Permissions.ADD_REACTIONS, channel))
                     return;
                 const tree = returnVal.props.children[2].props.children;
-                tree.splice(1, 0, React.createElement(Menu.MenuItem, { id: "quick-star", label: "Quick Star", action: () => {
+                tree.splice(7, 0, React.createElement(Menu.MenuItem, { id: "quick-star", label: "Quick Star", action: () => {
                         ReactionUtils.addReaction(channel_id, message_id, { id: null, name: '⭐', animated: false });
                     } }));
             }));
